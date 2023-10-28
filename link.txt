@@ -1,1 +1,3 @@
-https://hub.docker.com/repository/docker/widiarrohman/item-app/general
+docker hub: https://hub.docker.com/repository/docker/widiarrohman/item-app/general
+
+github: https://github.com/widiarrohman1234/a433-microservices/tree/proyek-pertama
