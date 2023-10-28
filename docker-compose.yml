@@ -1,0 +1,18 @@
+version: '2'
+  services:
+    item-app:
+      image: widiarrohman/item-app:v1
+      ports:
+        - "80:8080" # kiri port host, kanan port container
+      depends_on:
+        - item-db
+      restart: always
+
+    item-db:
+      image: mongo:3
+      volumes:
+        - app-db:/data/db
+    restart: always
+
+  volumes:
+    app-db:
