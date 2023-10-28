@@ -1,18 +1,18 @@
 version: '2'
-  services:
-    item-app:
-      image: widiarrohman/item-app:v1
-      ports:
-        - "80:8080" # kiri port host, kanan port container
-      depends_on:
-        - item-db
-      restart: always
+services:
+  item-app:
+    image: widiarrohman/item-app:v1
+    ports:
+      - "80:8080"
+    depends_on:
+      - item-db
+    restart: always # Restart policy diterapkan pada layanan item-app
 
-    item-db:
-      image: mongo:3
-      volumes:
-        - app-db:/data/db
-    restart: always
+  item-db:
+    image: mongo:3
+    volumes:
+      - app-db:/data/db
+    restart: always # Restart policy diterapkan pada layanan item-db
 
-  volumes:
-    app-db:
+volumes:
+  app-db:

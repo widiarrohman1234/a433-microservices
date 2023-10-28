@@ -1,5 +1,5 @@
 # build image dengan nama item-app dan versi v.1
-docker build -t item-app:v1
+docker build -t item-app:v1 .
 
 # menampilkan list images
 docker images
