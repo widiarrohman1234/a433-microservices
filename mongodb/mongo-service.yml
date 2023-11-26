@@ -1,0 +1,17 @@
+# Menggunakan apiVersion: apps/v1
+apiVersion: apps/v1
+# Menggunakan kind: Service
+kind: Service
+# metadata untuk menamakan service
+metadata:
+  name: mongo-service
+# spec untuk menentukan spesifikasi service
+spec:
+  selector:
+    app: mongo
+  # port untuk menentukan port service
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+      # nodePort: 30017

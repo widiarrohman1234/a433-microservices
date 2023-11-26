@@ -1,0 +1,16 @@
+# Konfigurasi map untuk mongodb
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-configmap
+data:
+# membuat file mongod.conf
+  mongod.conf: |
+    storage:
+      dbPath: /data/db
+      journal:
+        enabled: true
+    systemLog:
+      destination: file
+      logAppend: true
+      path: /var/log/mongodb/mongod.log

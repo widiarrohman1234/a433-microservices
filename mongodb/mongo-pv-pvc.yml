@@ -1,0 +1,35 @@
+# mongo pv-pvc (Persistent Volume - Persistent Volume Claim)
+apiVersion: v1
+# menggunakan kind: PersistentVolumeClaim
+kind: PersistentVolume
+# metadata untuk menamakan persistent volume
+metadata:
+  name: mongo-pv-volume
+  labels:
+    type: local
+    app: mongo
+# spec untuk menentukan spesifikasi persistent volume
+spec:
+  # menggunakan stroageClassName: hostpath (windows)
+  storageClassName: hostpath
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/tmp"
+---
+# PVC (Persistent Volume Claim) untuk mongo
+apiVersion: v1
+# menggunakan kind: PersistentVolumeClaim
+kind: PersistentVolumeClaim
+# metadata untuk menamakan persistent volume claim
+metadata:
+  name: mongo-pv-claim
+# spec untuk menentukan spesifikasi persistent volume claim
+spec:
+  resources:
+    requests:
+      storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
