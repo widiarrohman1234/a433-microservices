@@ -33,3 +33,6 @@ spec:
       storage: 500Mi
   accessModes:
     - ReadWriteOnce
+    
+# perintah untuk menjalankan persistent volume claim dengan namespace default
+# kubectl apply -f mongodb/mongo-pv-pvc.yml    

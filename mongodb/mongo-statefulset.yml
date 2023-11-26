@@ -19,26 +19,23 @@ spec:
           image: mongo:latest
           ports:
             - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME_FILE
+              value: /etc/mongo-credentials/MONGO_ROOT_USERNAME
+            - name: MONGO_INITDB_ROOT_PASSWORD_FILE
+              value: /etc/mongo-credentials/MONGO_ROOT_PASSWORD
           volumeMounts:
             - name: mongo-persistent-storage
               mountPath: /data/db
-      env:
-        - name: MONGO_INITDB_ROOT_USERNAME_FILE
-          value: /etc/mongo-credentials/MONGO_ROOT_USERNAME
-        - name: MONGO_INITDB_ROOT_PASSWORD_FILE
-          value: /etc/mongo-credentials/MONGO_ROOT_PASSWORD
-
-      # Volume mount
-      # Persistent Volume dengan mount path /data/db.
-      # ConfigMap dengan mount path /config.
-      # Secret dengan mount path /etc/mongo-credentials.
-      volumes:
-        - name: mongo-persistent-storage
-          persistentVolumeClaim:
-            claimName: mongo-pvc
-        - name: mongo-configmap-storage
-          configMap:
-            name: mongo-configmap
-        - name: mongo-secret-storage
-          secret:
-            secretName: mongo-secret
+            - name: mongo-configmap-storage
+              mountPath: /config
+            - name: mongo-secret-storage
+              mountPath: /etc/mongo-credentials
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-persistent-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi

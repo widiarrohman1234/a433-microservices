@@ -1,5 +1,5 @@
-# Menggunakan apiVersion: apps/v1
-apiVersion: apps/v1
+# Menggunakan apiVersion: v1
+apiVersion: v1
 # Menggunakan kind: Service
 kind: Service
 # metadata untuk menamakan service
@@ -15,3 +15,6 @@ spec:
       port: 27017
       targetPort: 27017
       # nodePort: 30017
+
+# perintah untuk menjalankan service dengan namespace default
+# kubectl apply -f mongodb/mongo-service.yml

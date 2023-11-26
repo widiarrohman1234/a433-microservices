@@ -14,3 +14,6 @@ data:
       destination: file
       logAppend: true
       path: /var/log/mongodb/mongod.log
+
+# perintah untuk menjalankan configmap dengan namespace default
+# kubectl apply -f mongodb/mongo-configmap.yml
