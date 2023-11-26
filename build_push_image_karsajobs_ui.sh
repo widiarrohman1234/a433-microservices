@@ -14,6 +14,9 @@ docker push widiarrohman/karsajobs-ui:latest || { echo 'docker push failed' ; ex
 # chmod +x build_push_image_karsajobs_ui.sh
 # ./build_push_image_karsajobs_ui.sh
 
+# cara menjalankan image karsajobs-ui:latest
+# docker run -d -p 8000:8000 widiarrohman/karsajobs-ui:latest
+
 
 
 
