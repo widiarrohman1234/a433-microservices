@@ -1,0 +1,33 @@
+# menggunakan apiVersion: apps/v1
+apiVersion: apps/v1
+# menggunakan kind: Deployment
+kind: Deployment
+# metadata untuk menamakan deployment
+metadata:
+  name: karsajobs-ui-deployment
+# spec untuk menentukan spesifikasi deployment
+spec:
+  # replicas untuk menentukan jumlah pod yang akan dibuat
+  replicas: 1
+  # selector untuk menentukan label yang akan digunakan
+  selector:
+    matchLabels:
+      app: karsajobs-ui
+  # template untuk menentukan template pod yang akan dibuat
+  template:
+    metadata:
+      labels:
+        app: karsajobs-ui
+    spec:
+      # containers untuk menentukan container yang akan dibuat
+      containers:
+        - name: karsajobs-ui
+          # image untuk menentukan image yang akan digunakan
+          image: karsajobs-ui:lastest
+          # ports untuk menentukan port yang akan digunakan
+          ports:
+            - containerPort: 80
+          # env untuk menentukan environment variable yang akan digunakan
+          env:
+            - name: VUE_APP_BACKEND
+              value: http://karsajobs-api-service:3000
