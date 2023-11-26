@@ -19,11 +19,11 @@ spec:
         - name: karsajobs
           image: karsajobs:lastest
           ports:
-            - containerPort: 3000
+            - containerPort: 8080
           env:
             # APP_PORT run karsajobs in specific port
             - name: APP_PORT
-              value: "3000"
+              value: "8080"
             # MONGO_HOST mongodb hostname
             - name: MONGO_HOST
               value: "mongo-service"
@@ -32,10 +32,10 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mongo-secret
-                  key: mongo-root-username
+                  key: MONGO_ROOT_USERNAME
             # MONGO_PASS mongodb password
             - name: MONGO_PASS
               valueFrom:
                 secretKeyRef:
                   name: mongo-secret
-                  key: mongo-root-password
+                  key: MONGO_ROOT_PASSWORD
