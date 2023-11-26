@@ -1,0 +1,8 @@
+# Link docker image backend
+karsajobs: https://hub.docker.com/r/widiarrohman/karsajobs/tags
+karsajobs-ui: https://hub.docker.com/r/widiarrohman/karsajobs-ui
+
+# Link github repository karsajobs
+karsajobs: https://github.com/widiarrohman1234/a433-microservices/tree/karsajobs
+karsajobs-ui: https://github.com/widiarrohman1234/a433-microservices/tree/karsajobs-ui
+kubernetes: https://github.com/widiarrohman1234/a433-microservices/tree/kubernetes
