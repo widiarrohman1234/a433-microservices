@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: karsajobs-deployment
+spec:
+  # membuat 1 pods
+  replicas: 1
+  selector:
+    matchLabels:
+      app: karsajobs
+      type: backend
+  template:
+    metadata:
+      labels:
+        app: karsajobs
+        type: backend
+    spec:
+      containers:
+        - name: karsajobs
+          image: karsajobs:lastest
+          ports:
+            - containerPort: 3000
+          env:
+            # APP_PORT run karsajobs in specific port
+            - name: APP_PORT
+              value: "3000"
+            # MONGO_HOST mongodb hostname
+            - name: MONGO_HOST
+              value: "mongo-service"
+            # MONGO_USER mongodb user
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-root-username
+            # MONGO_PASS mongodb password
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-root-password

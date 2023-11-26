@@ -1,0 +1,14 @@
+# karsajobs service
+apiVersion: v1
+kind: Service
+metadata:
+  name: karsajobs-service
+# spec untuk menentukan spesifikasi service
+spec:
+  selector:
+    app: karsajobs
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      # nodePort: 30000
