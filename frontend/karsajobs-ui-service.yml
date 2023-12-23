@@ -13,6 +13,5 @@ spec:
   # port untuk menentukan port service
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
-      # nodePort: 30080
+      port: 8000
+      targetPort: 8000
