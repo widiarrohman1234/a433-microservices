@@ -31,11 +31,3 @@ spec:
               mountPath: /config
             - name: mongo-secret-storage
               mountPath: /etc/mongo-credentials
-  volumeClaimTemplates:
-    - metadata:
-        name: mongo-persistent-storage
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 1Gi
