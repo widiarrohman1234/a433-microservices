@@ -1,0 +1,1 @@
+NODE_OPTIONS='--openssl-legacy-provider' npx vue-cli-service serve --port 8000
