@@ -23,7 +23,7 @@ spec:
       containers:
         - name: karsajobs-ui
           # image untuk menentukan image yang akan digunakan
-          image: karsajobs-ui:lastest
+          image: widiarrohman/karsajobs-ui:lastest
           # ports untuk menentukan port yang akan digunakan
           ports:
             - containerPort: 8000

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: karsajobs
-          image: karsajobs:lastest
+          image: widiarrohman/karsajobs:lastest
           ports:
             - containerPort: 8080
           env:
