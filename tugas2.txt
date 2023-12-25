@@ -1,0 +1,22 @@
+NAME                                           READY   STATUS    RESTARTS   AGE
+pod/karsajobs-deployment-7f48c7c8dc-h2ltx      1/1     Running   0          36m
+pod/karsajobs-ui-deployment-6d8b7bbf68-8rjcp   1/1     Running   0          7m56s
+pod/mongo-statefulset-0                        1/1     Running   0          4m40s
+
+NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+service/karsajobs-service      NodePort    10.103.222.30   <none>        8080:30649/TCP   48m
+service/karsajobs-ui-service   NodePort    10.109.97.168   <none>        8000:31080/TCP   49m
+service/mongo-service          ClusterIP   None            <none>        27017/TCP        34m
+
+NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/karsajobs-deployment      1/1     1            1           36m
+deployment.apps/karsajobs-ui-deployment   1/1     1            1           49m
+
+NAME                                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/karsajobs-deployment-7f48c7c8dc      1         1         1       36m
+replicaset.apps/karsajobs-ui-deployment-56fcd66985   0         0         0       49m
+replicaset.apps/karsajobs-ui-deployment-648cb6dbb9   0         0         0       8m48s
+replicaset.apps/karsajobs-ui-deployment-6d8b7bbf68   1         1         1       7m56s
+
+NAME                                 READY   AGE
+statefulset.apps/mongo-statefulset   1/1     4m40s
