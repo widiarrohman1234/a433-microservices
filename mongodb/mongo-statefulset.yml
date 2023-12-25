@@ -3,31 +3,44 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongo-statefulset
+  namespace: tugas2
 spec:
   serviceName: "mongo-service"
   replicas: 1
   selector:
     matchLabels:
-      app: mongo
+      type: mongodb
   template:
     metadata:
       labels:
         app: mongo
+        type: mongodb
     spec:
       containers:
-        - name: mongo
-          image: mongo:latest
-          ports:
-            - containerPort: 27017
-          env:
-            - name: MONGO_INITDB_ROOT_USERNAME_FILE
-              value: /etc/mongo-credentials/MONGO_ROOT_USERNAME
-            - name: MONGO_INITDB_ROOT_PASSWORD_FILE
-              value: /etc/mongo-credentials/MONGO_ROOT_PASSWORD
-          volumeMounts:
-            - name: mongo-persistent-storage
-              mountPath: /data/db
-            - name: mongo-configmap-storage
-              mountPath: /config
-            - name: mongo-secret-storage
-              mountPath: /etc/mongo-credentials
+      - image: mongo:latest  # Sesuaikan dengan versi yang diinginkan
+        name: mongo
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME_FILE
+            value: /etc/mongo-credentials/MONGO_ROOT_USERNAME
+          - name: MONGO_INITDB_ROOT_PASSWORD_FILE
+            value: /etc/mongo-credentials/MONGO_ROOT_PASSWORD
+        volumeMounts:
+          - name: mongo-secret-mount
+            mountPath: /etc/mongo-credentials
+          - name: mongo-config-mount
+            mountPath: /config
+          - name: mongo-persistent-storage
+            mountPath: /data/db
+      volumes:
+        - name: mongo-secret-mount
+          secret:
+            secretName: mongo-secret
+        - name: mongo-config-mount
+          configMap:
+            name: mongo-configmap
+            items:
+              - key: mongo.conf
+                path: mongo.conf
+        - name: mongo-persistent-storage
+          persistentVolumeClaim:
+            claimName: mongo-pv-claim

@@ -5,6 +5,10 @@ kind: Deployment
 # metadata untuk menamakan deployment
 metadata:
   name: karsajobs-ui-deployment
+  namespace: tugas2
+  labels:
+    app: karsajobs-ui
+    type: frontend
 # spec untuk menentukan spesifikasi deployment
 spec:
   # replicas untuk menentukan jumlah pod yang akan dibuat
@@ -23,14 +27,15 @@ spec:
       containers:
         - name: karsajobs-ui
           # image untuk menentukan image yang akan digunakan
-          image: widiarrohman/karsajobs-ui:lastest
+          image: widiarrohman/karsajobs-ui:latest
           # ports untuk menentukan port yang akan digunakan
           ports:
             - containerPort: 8000
           # env untuk menentukan environment variable yang akan digunakan
           env:
             - name: VUE_APP_BACKEND
-              value: http://karsajobs-api-service:3000
+              value: http://127.0.0.1:52753
+#              value: http://karsajobs-api-service:3000
 
 # perintah untuk menjalankan deployment dengan namespace default
 # kubectl apply -f karsajobs-ui-deployment.yml

@@ -5,6 +5,10 @@ kind: Service
 # metadata untuk menamakan service
 metadata:
   name: karsajobs-ui-service
+  namespace: tugas2
+  labels:
+    app: karsajobs-ui
+    type: frontend
 # spec untuk menentukan spesifikasi service
 spec:
   type: NodePort
@@ -12,6 +16,4 @@ spec:
     app: karsajobs-ui
   # port untuk menentukan port service
   ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 8000
+    - port: 8000

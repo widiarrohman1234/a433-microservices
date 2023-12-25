@@ -5,16 +5,17 @@ kind: Service
 # metadata untuk menamakan service
 metadata:
   name: mongo-service
+  namespace: tugas2
+  labels:
+    app: mongo-service
+    type: mongodb
 # spec untuk menentukan spesifikasi service
 spec:
-  selector:
-    app: mongo
-  # port untuk menentukan port service
   ports:
-    - protocol: TCP
-      port: 27017
-      targetPort: 27017
-      # nodePort: 30017
+    - port: 27017
+  clusterIP: None
+  selector:
+    type: mongodb
 
 # perintah untuk menjalankan service dengan namespace default
 # kubectl apply -f mongodb/mongo-service.yml

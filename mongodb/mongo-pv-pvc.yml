@@ -8,10 +8,11 @@ metadata:
   labels:
     type: local
     app: mongo
+  namespace: tugas2
 # spec untuk menentukan spesifikasi persistent volume
 spec:
   # menggunakan stroageClassName: hostpath (windows)
-  storageClassName: hostpath
+#  storageClassName: manual
   capacity:
     storage: 3Gi
   accessModes:
@@ -26,13 +27,17 @@ kind: PersistentVolumeClaim
 # metadata untuk menamakan persistent volume claim
 metadata:
   name: mongo-pv-claim
+  labels:
+    app: mongo
+  namespace: tugas2
 # spec untuk menentukan spesifikasi persistent volume claim
 spec:
+#  storageClassName: manual
   resources:
     requests:
       storage: 500Mi
   accessModes:
     - ReadWriteOnce
-    
+#  volumeName: mongo-pv-volume # Menambahkan referensi ke PersistentVolume yang sudah didefinisikan    
 # perintah untuk menjalankan persistent volume claim dengan namespace default
 # kubectl apply -f mongodb/mongo-pv-pvc.yml    
