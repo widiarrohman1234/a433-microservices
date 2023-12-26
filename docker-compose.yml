@@ -4,4 +4,4 @@ services:
     image: widiarrohman/shipping-service:latest
     container_name: shipping-service
     ports:
-      - 3001:3001
+      - 3002:3001
