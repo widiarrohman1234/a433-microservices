@@ -1,9 +1,28 @@
 version: "3.2"
 services:
+  rabbitmq:
+    image: rabbitmq:3.8-management-alpine
+    container_name: rabbitmq-container
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    networks:
+      - my-network
   order:
     image: widiarrohman/order-service:latest
     container_name: order-service
     ports:
       - 3000:3000
     environment:
-      - AMQP_URL=amqp://localhost:5673
+      - AMQP_URL=amqp://admin:admin@rabbitmq:5672
+    depends_on:
+      - rabbitmq
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
