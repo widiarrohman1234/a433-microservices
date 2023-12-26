@@ -6,4 +6,9 @@ services:
     ports:
       - 3001:3001
     environment:
-      - AMQP_URL=amqp://localhost:5673
+      - AMQP_URL=amqp://admin:admin@rabbitmq:5672
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
